@@ -10,7 +10,8 @@ class Blog extends Component {
 
     state = {
         posts:[],
-        blogId: null
+        blogId: null,
+        error:false
     }
 
     componentDidMount (){
@@ -26,7 +27,7 @@ class Blog extends Component {
                 this.setState({posts:updatedPost});               
             })
             .catch (error =>{
-                console.log(error);
+                this.setState({error:true});
             })
     }
 
@@ -35,7 +36,10 @@ class Blog extends Component {
     }
 
     render () {
-    const posts = this.state.posts.map (post =>{
+    let posts = <p style={{color:'Red'}}> Something went wrong. Can't show the blogs</p> 
+    
+    if(!this.state.error){
+        posts = this.state.posts.map (post =>{
             return (
                 <Post 
                     key={post.id} 
@@ -44,7 +48,9 @@ class Blog extends Component {
                     clicked ={()=>this.handleDisplayPost(post.id)}                        
                     />
             )
-    })
+        })
+    }
+
         return (
             <div>
                 <section className="Posts">
