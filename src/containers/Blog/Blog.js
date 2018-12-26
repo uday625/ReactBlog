@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
 
 import Post from '../../components/Post/Post';
 import FullPost from '../../components/FullPost/FullPost';
 import NewPost from '../../components/NewPost/NewPost';
+import Heading from '../../components/Heading/Heading';
+
 import './Blog.css';
 
 class Blog extends Component {
@@ -52,7 +54,8 @@ class Blog extends Component {
     }
 
         return (
-            <div>
+            <Fragment>
+                <Heading/>
                 <section className="Posts">
                     {posts}
                 </section>
@@ -64,7 +67,7 @@ class Blog extends Component {
                 <section>
                     <NewPost />
                 </section>
-            </div>
+            </Fragment>
         );
     }
 }
